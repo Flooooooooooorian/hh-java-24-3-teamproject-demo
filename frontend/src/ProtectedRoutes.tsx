@@ -1,7 +1,8 @@
 import {Navigate, Outlet} from "react-router-dom";
+import {AppUser} from "./Model.ts";
 
 type ProtectedRoutesProps = {
-    user: string | undefined | null
+    user: AppUser | undefined | null
 }
 
 export default function ProtectedRoutes(props: ProtectedRoutesProps) {

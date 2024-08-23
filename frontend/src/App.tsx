@@ -5,11 +5,12 @@ import TodoColumn from "./TodoColumn.tsx";
 import {allPossibleTodos} from "./TodoStatus.ts";
 import {Route, Routes} from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes.tsx";
+import {AppUser} from "./Model.ts";
 
 function App() {
 
-    const [todos, setTodos] = useState<Todo[]>()
-    const [user, setUser] = useState<string | null>()
+    const [todos, setTodos] = useState<Todo[]>([])
+    const [user, setUser] = useState<AppUser | null>()
 
     const login = () => {
         const host = window.location.host === 'localhost:5173' ? 'http://localhost:8080' : window.location.origin
@@ -53,7 +54,7 @@ function App() {
                    element={<div className="page">
                        {!user && <button onClick={login}>Login</button>}
                        {user && <button onClick={logout}>Logout</button>}
-                       <p>{user}</p>
+                       <p>{user?.username}</p>
                        <h1>TODOs</h1>
                        {
                            allPossibleTodos.map(status => {
